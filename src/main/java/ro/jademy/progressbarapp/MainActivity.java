@@ -22,8 +22,6 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "ro.jademy.progressbarapp.MainActivity";
 
-    // CTRL + ALT + L
-    // ALT + ENTER
     ProgressBar bar;
     EditText edit;
     TextView text;
@@ -35,7 +33,9 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate()");
+        if (DEBUG) {
+		Log.d(TAG, "onCreate()");
+	}
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bar = (ProgressBar) findViewById(R.id.progressBar);
