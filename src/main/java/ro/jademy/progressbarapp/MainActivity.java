@@ -31,37 +31,20 @@ public class MainActivity extends ActionBarActivity {
 
     ProgressTask task;
 
+    boolean DEBUG = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bar = (ProgressBar) findViewById(R.id.progressBar);
         edit = (EditText) findViewById(R.id.editText);
         text = (TextView) findViewById(R.id.george);
         button = (Button) findViewById(R.id.button);
     }
 
-
-
     public void onClickButton(View view) {
-        Log.i(TAG, "onClickButton");
-        Editable editText = edit.getText();
-        String stringText = editText.toString();
-        int iteratii = 5_000_000;
-        if (!("".equals(stringText))) {
-            Log.i(TAG, "if text not empty");
-            try {
-                iteratii = Integer.parseInt(stringText);
-                Log.i(TAG, "successfully parsed text");
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(TAG, e.getMessage());
-            }
-        } else {
-            Log.i(TAG, "else text is empty");
-        }
         bar.setMax((int) iteratii);
 
         if (task != null) {
@@ -72,8 +55,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private class ProgressTask extends AsyncTask<Integer, Integer, Void> {
-
-
         @Override
         protected Void doInBackground(Integer... params) {
 
@@ -81,7 +62,6 @@ public class MainActivity extends ActionBarActivity {
             int s = 0;
             Random random = new Random();
             for (int i = 0; i < iteratii; i++) {
-                // Log.d(TAG, "i am at " + i + " iterations");
                 int number = random.nextInt(11);
                 s = s + number;
                 publishProgress(s, i);
